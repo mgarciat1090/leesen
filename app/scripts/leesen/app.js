@@ -17,41 +17,40 @@ define(function (require) {
     _ = require('underscore');
     Backbone = require('backbone');
 
-
-    require('./Users/UserView');
-
     App = App || {};
     App.Routers = {};
     App.Users = {};
-    App.Users.Model = require('./Users/UserModel');
-    App.Users.View = require('./Users/UserView');
+    App.Users.Model = require('UserModel');
+    App.Users.View = require('UserView');
 
     console.log(App);
 
-    (function(App){
-        App.Routers.R1 = Backbone.Router.extend({
-            routes : {
-                '/*' : 'index'
-            },
-            index : function(){
-                var CurrentUserModel = new App.Users.Model({
-                    name : 'Martin',
-                    lastname : 'García',
-                    books : [ 'Cien años de soledad', 'psicomagia', 'metagenealogía' ]
-                });
 
-                console.log(CurrentUserModel);
+    App.Routers.R1 = Backbone.Router.extend({
+        routes : {
+            '/*' : 'index'
+        },
+        index : function(){
 
-                var CurrentUserView = new App.Users.View({
-                  model : CurrentUserModel
-                });
+            var CurrentUserModel = new App.Users.Model({
+                name : 'Martin',
+                lastname : 'García',
+                books : [
+                    { name : 'Cien años de soledad', img : 'cien.jpg'},
+                    { name : 'psicomagia' , img : 'psicomagia.jpg'} ,
+                    { name : 'metagenealogía' , img : 'meta.jpg' }
+                ]
+            });
 
-                $('#main-wrapper').append(CurrentUserView.render().el);
-                console.log('rendered');
-            }
-        });
+            var CurrentUserView = new App.Users.View({
+                model : CurrentUserModel
+            });
 
-    })(App);
+            $('#main-wrapper').append(CurrentUserView.render().el);
+
+        }
+    });
+
 
     return App;
 });

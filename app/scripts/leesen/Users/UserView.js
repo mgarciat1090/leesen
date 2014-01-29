@@ -10,15 +10,18 @@
 define(function (require) {
     'use strict';
     var UsersView,
+    BookCollectionView,
     App,
     Backbone,
     Templates,
     _;
 
 
-        Templates = require('../Templates');
+        Templates = require('Templates');
         _ = require('underscore');
         Backbone = require('backbone');
+
+        BookCollectionView = require('BookCollectionView');
 
         UsersView = Backbone.View.extend({
             tagName : "div",
@@ -30,23 +33,27 @@ define(function (require) {
                 this,
                 'render',
                 'renderProfile',
-                'renderSidebar'
+                'renderSidebar',
+                'renderBooks'
                 );
-                //this.model.on('change',this.render,this);
+                this.model.on('change',this.render,this);
             },
             render : function(){
                 this.renderProfile();
+                this.renderBooks();
                 this.renderSidebar();
-                this.el.innerHTML = this.template(this.model.toJSON());
                 return this;
             },
             renderProfile : function(){
-
-
+                this.$el.append(this.template(this.model.toJSON()));
             },
             renderSidebar : function(){
-
+                $('#side').html(this.sidebarTemplate(this.model.toJSON()));
             },
+            renderBooks : function(){
+                this.bookCollectionView = new BookCollectionView({ collection : this.model.get('BookCollection') } );
+                this.el.appendChild(this.bookCollectionView.render().el);
+            }
         });
 
 

@@ -13,6 +13,17 @@ require.config({
         'underscore': '../bower_components/underscore-amd/underscore',
         'backbone': '../bower_components/backbone-amd/backbone',
         'json2': '../bower_components/json2/json2',
+
+        'UserModel' : './leesen/Users/UserModel',
+        'UserView' : './leesen/Users/UserView',
+        'UserCollection' : './leesen/Users/UserCollection',
+        'BookCollection' : './leesen/Books/BookCollection',
+        'BookModel' : './leesen/Books/BookModel',
+        'BookView' : './leesen/Books/BookView',
+        'BookCollectionView' : './leesen/Books/BookCollectionView',
+
+        'Templates' : './leesen/Templates'
+
     },
     shim: {
         'console-shim': {

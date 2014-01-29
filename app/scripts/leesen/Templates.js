@@ -10,6 +10,8 @@ define(function (require){
         Templates = {
             SideBar: require('hbs!./Templates/SideBar'),
             UserView: require('hbs!./Templates/UserView'),
+            BookCollectionView: require('hbs!./Templates/BookCollectionView'),
+            BookView: require('hbs!./Templates/BookView')
         };
 
     return Templates;
